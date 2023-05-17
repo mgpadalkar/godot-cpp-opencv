@@ -16,27 +16,29 @@ git submodule update --init  --recursive
 ```
 
 ## Structure that we now have
-+ <your development folder>
-  + godot-cpp
-    - godot-headers
-      - <lots of files here>
-    - <lots of other files here>
-  + demo
-    + bin
-      - gd_opencv.gdnlib
-      - gd_opencv.gdns
-    default_env.tres
-    icon.png
-    Main2D.tscn
-    project.godot
-  README.md
-  SConstruct
-  + src
-    - gd_opencv.h
-    - gd_opencv.cpp
-    - gd_opencv_library.cpp
-    - own_opencv_processing.h
-    - own_opencv_processing.cpp
+
+    godot-cpp-opencv                  # the repository
+    ├── godot-cpp                     #
+    │   ├── godot-headers             #
+    │   │   ├── <lots of files>       #
+    │   ├── <lots of other files>     #
+    ├── demo                          # project folder
+    │   ├── bin                       #
+    │   │   ├── gd_opencv.gdnlib      #
+    │   │   ├── gd_opencv.gdns        #
+    │   ├── default_env.tres          #
+    │   ├── icon.png                  #
+    │   ├── Main2D.tscn               #
+    │   ├── project.godot             #
+    ├── README.md                     #
+    ├── SConstruct                    #
+    ├── src                           # C++ code folder
+    │   ├── gd_opencv.h               #
+    │   ├── gd_opencv.cpp             #
+    │   ├── gd_opencv_library.cpp     #
+    │   ├── own_opencv_processing.h   #
+    │   ├── own_opencv_processing.cpp #
+    └── ...
 
 
 ##  compile godot-cpp

@@ -7,7 +7,6 @@ Referred from: [https://docs.godotengine.org/it/stable/tutorials/scripting/gdnat
 ```bash
 git clone --recursive git@github.com:mgpadalkar/godot-cpp-opencv.git
 cd godot-cpp-opencv
-cd godot-cpp
 ```
 
 ## submodule init
@@ -43,6 +42,7 @@ git submodule update --init  --recursive
 
 ##  compile godot-cpp
 ```bash
+cd godot-cpp
 scons platform=linux generate_bindings=yes -j8 
 # It generates: godot-cpp/bin/libgodot-cpp.linux.debug.64.a
 ```

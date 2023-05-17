@@ -1,0 +1,18 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="godot_"
+reloadable=true
+
+[entry]
+
+X11.64="res://bin/x11/libgdopencvexample.so"
+Windows.64="res://bin/win64/libgdopencvexample.dll"
+OSX.64="res://bin/osx/libgdopencvexample.dylib"
+
+[dependencies]
+
+X11.64=[  ]
+Windows.64=[  ]
+OSX.64=[  ]

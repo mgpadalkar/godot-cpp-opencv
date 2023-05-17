@@ -3,25 +3,49 @@ Godot example with C++ and OpenCV functions in GDNative.
 Referred from: [https://docs.godotengine.org/it/stable/tutorials/scripting/gdnative/gdnative_cpp_example.html](https://docs.godotengine.org/it/stable/tutorials/scripting/gdnative/gdnative_cpp_example.html)
 
 
-# clone
+## clone
 ```bash
 git clone --recursive git@github.com:mgpadalkar/godot-cpp-opencv.git
 cd godot-cpp-opencv
 cd godot-cpp
 ```
 
-# submodule init
+## submodule init
 ```bash
 git submodule update --init  --recursive
 ```
 
-# compile godot-cpp
+## Structure that we now have
++ <your development folder>
+  + godot-cpp
+    - godot-headers
+      - <lots of files here>
+    - <lots of other files here>
+  + demo
+    + bin
+      - gd_opencv.gdnlib
+      - gd_opencv.gdns
+    default_env.tres
+    icon.png
+    Main2D.tscn
+    project.godot
+  README.md
+  SConstruct
+  + src
+    - gd_opencv.h
+    - gd_opencv.cpp
+    - gd_opencv_library.cpp
+    - own_opencv_processing.h
+    - own_opencv_processing.cpp
+
+
+##  compile godot-cpp
 ```bash
 scons platform=linux generate_bindings=yes -j8 
 # It generates: godot-cpp/bin/libgodot-cpp.linux.debug.64.a
 ```
 
-# compile our library
+## compile our library
  - Compile OpenCV from source if needed.   
    I had followed this for Ubuntu 20.04: https://gist.github.com/raulqf/f42c718a658cddc16f9df07ecc627be7
 

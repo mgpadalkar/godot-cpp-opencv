@@ -69,3 +69,28 @@ Note: If OpenCV is built from source, like in my case,
 start Godot from the terminal in which the OpenCV paths are
 already set so that the OpenCV shared libs are available to
 Godot.
+
+
+## start Godot and generate a webcam viewer
+I am using Godot 3.5.2 downloaded from https://github.com/godotengine/godot/releases/download/3.5.2-stable/Godot_v3.5.2-stable_x11.64.zip
+
+* Add a `TextureRect` to `Main2D` and rename it to `webcamView`
+* Add a `Sprite` to `Main2D`
+* Attach the `bin\gd_opencv.gdns` script to `Sprite`
+* Create a `Main2D.gd` script
+* Connect `frame_updated` signal of `Sprite` to `Main2D`
+* Modify the `Main2D.gd` scripts' `func _on_Sprite_frame_updated(node image)` function with the following lines:
+```gdscript
+func _on_Sprite_frame_updated(node, image):
+	var image_texture:ImageTexture = ImageTexture.new()
+	image_texture.create_from_image(image)
+	$webcamView.texture = image_texture
+```
+
+Add a video here.
+
+## generate a 3D scene and include the webcam viewer in it
+
+Add instructions.
+
+Add video.

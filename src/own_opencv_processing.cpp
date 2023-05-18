@@ -19,10 +19,10 @@ cv::Mat OpenCVProcessing::process_image(cv::Mat input, bool do_process)
     cv::Mat output = input.clone();
     if (!do_process)
         return output;
-   
+
     // get Canny edges
     cv::Mat tmp;
-    cv::blur(input, tmp, cv::Size(3, 3));
-    cv::Canny(tmp, output, 0, 100, 3);
+    cv::blur(input, tmp, cv::Size(3, 3)); // blur first
+    cv::Canny(tmp, output, 0, 100, 3); // edge detection of blurred image
     return output;
 }

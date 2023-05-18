@@ -14,16 +14,18 @@ opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
 opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'demo/bin/'))
 # opts.Add(PathVariable('target_name', 'The library name.', 'libgdexample', PathVariable.PathAccept))
 opts.Add(PathVariable('target_name', 'The library name.', 'libgdopencvexample', PathVariable.PathAccept))
-# opts.Add(PathVariable('opencv_dir', 'The path where opencv is installed.', '$HOME/localInstalls/opencv-4.5.2'))
 
 # Local dependency paths, adapt them to your setup
 godot_headers_path = "godot-cpp/godot-headers/"
 cpp_bindings_path = "godot-cpp/"
 cpp_library = "libgodot-cpp"
 
-# opencv include and libs
+# opencv include and libs from pkg-config
 opencv_include = os.popen("echo `pkg-config --cflags opencv`").read().split()
 opencv_libs = os.popen("echo `pkg-config --libs opencv`").read().split()
+# print([p[2:] for p in opencv_include]); exit()
+# print([opencv_libs[0][2:]]); exit()
+# print([p[2:] for p in opencv_libs[1:]]); exit()
 
 # only support 64 at this time..
 bits = 64
@@ -100,16 +102,17 @@ cpp_library += '.' + str(bits)
 
 # make sure our binding library is properly includes
 env.Append(CPPPATH=['.', godot_headers_path, cpp_bindings_path + 'include/', cpp_bindings_path + 'include/core/', cpp_bindings_path + 'include/gen/'])
-# env.Append(CPPPATH=['.', godot_headers_path, cpp_bindings_path + 'include/', cpp_bindings_path + 'include/core/', cpp_bindings_path + 'include/gen/', env['opencv_dir'] + '/include/', env['opencv_dir'] + '/include/opencv4/'])
 env.Append(LIBPATH=[cpp_bindings_path + 'bin/'])
-# env.Append(LIBPATH=[cpp_bindings_path + 'bin/', env['opencv_dir'] + '/lib/'])
 env.Append(LIBS=[cpp_library])
-# env.Append(LIBS=[cpp_library, opencv_libs])
 
-# opencv include and lib
-env.Append(CPPPATH=env['CPPPATH'] + [p[2:] for p in opencv_include])
-env.Append(LIBPATH=env['LIBPATH'] + [opencv_libs[0][2:]])
-env.Append(LIBS=env['LIBS'] + [p for p in opencv_libs[1:]])
+# append opencv_include and opencv_libs appropriately
+env.Append(CPPPATH=[p[2:] for p in opencv_include])
+env.Append(LIBPATH=[opencv_libs[0][2:]])
+env.Append(LIBS=[p[2:] for p in opencv_libs[1:]])
+# print(env['CPPPATH'])
+# print(env['LIBPATH'])
+# print(env['LIBS'])
+# exit()
 
 # tweak this if you want to use different folders, or more folders, to store your source code in.
 env.Append(CPPPATH=['src/'])

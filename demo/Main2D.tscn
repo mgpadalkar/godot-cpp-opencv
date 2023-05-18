@@ -1,5 +1,19 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://bin/gd_opencv.gdns" type="Script" id=1]
+[ext_resource path="res://Main2D.gd" type="Script" id=2]
 
 [node name="Main2D" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="webcamView" type="TextureRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+expand = true
+
+[node name="Sprite" type="Sprite" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="frame_updated" from="Sprite" to="." method="_on_Sprite_frame_updated"]

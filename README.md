@@ -29,6 +29,8 @@ git submodule update --init  --recursive
     │   ├── icon.png                  #
     │   ├── Main2D.tscn               #
     │   ├── project.godot             #
+    ├── misc                          #
+    │   ├── set_opencv4.sh            # my opencv install settings
     ├── README.md                     #
     ├── SConstruct                    #
     ├── src                           # C++ code folder

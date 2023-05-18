@@ -10,9 +10,15 @@ config_version=4
 
 [application]
 
-config/name="GDNative C++ OpenCV VR"
+config/name="Godot CPP OpenCV"
 run/main_scene="res://Main2D.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=640
+window/size/height=480
+window/stretch/mode="viewport"
 
 [gui]
 

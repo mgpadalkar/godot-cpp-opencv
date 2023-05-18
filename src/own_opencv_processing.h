@@ -4,9 +4,9 @@
 #include <opencv2/imgproc.hpp>
 
 // our class for doing processing in OpenCV
+
 class OpenCVProcessing
 {
-
     public:
         OpenCVProcessing();
         ~OpenCVProcessing();

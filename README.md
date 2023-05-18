@@ -14,12 +14,12 @@ Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative
 
 
 ## How to use this repository?
-1. [Clone](#clone)
-2. Compile godot-cpp
-3. Compile our OpenCV code with Godot wrapper
-4. Using our code to access webcam in a 2D scene [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
-5. Showing the webcam frames in a 3D scene [Watch Video](https://www.youtube.com/watch?v=_CPhs4S6hZM)
-6. Displaying the OpenCV output in HMD [Watch Video](https://www.youtube.com/watch?v=34rrUbCTPwg)
+1. [Clone](#clone-recursive)
+2. [Compile godot-cpp](#compile-godot-cpp)
+3. [Compile our OpenCV code with Godot wrapper](#compile-our-opencv-code-with-godot-wrapper)
+4. [Using our code to access webcam in a 2D scene](#using-our-code-to-access-webcam-in-a-2d-scene) [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
+5. [Showing the webcam frames in a 3D scene](#showing-the-webcam-frames-in-a-3d-scene) [Watch Video](https://www.youtube.com/watch?v=_CPhs4S6hZM)
+6. [Displaying the OpenCV output in HMD](#displaying-the-opencv-output-in-hmd) [Watch Video](https://www.youtube.com/watch?v=34rrUbCTPwg)
 
 ## Clone Recursive
 ```bash
@@ -56,7 +56,7 @@ git submodule update --init --recursive
     └── ...
 
 
-##  compile godot-cpp
+##  Compile godot-cpp
 ```bash
 cd godot-cpp
 scons platform=linux generate_bindings=yes -j8 
@@ -93,12 +93,12 @@ I am using Godot 3.5.2 downloaded from https://github.com/godotengine/godot/rele
 The scene is already created using the following steps.  
 Simply run to view the webcam output in Godot.   
 
-* Add a `TextureRect` to `Main2D` and rename it to `webcamView`
-* Add a `Sprite` to `Main2D`
-* Attach the `bin\gd_opencv.gdns` script to `Sprite`
-* Create a `Main2D.gd` script and attach it to `Main2D`
-* Connect `frame_updated` signal of `Sprite` to `Main2D`
-* Modify the `Main2D.gd` scripts' `func _on_Sprite_frame_updated(node image)` function with the following lines:
+1. Add a `TextureRect` to `Main2D` and rename it to `webcamView`
+2. Add a `Sprite` to `Main2D`
+3. Attach the `bin\gd_opencv.gdns` script to `Sprite`
+4. Create a `Main2D.gd` script and attach it to `Main2D`
+5. Connect `frame_updated` signal of `Sprite` to `Main2D`
+6. Modify the `Main2D.gd` scripts' `func _on_Sprite_frame_updated(node image)` function with the following lines:
 ```gdscript
 func _on_Sprite_frame_updated(node, image):
 	var image_texture:ImageTexture = ImageTexture.new()
@@ -111,9 +111,40 @@ For more details, watch the following video.
 
 ## Showing the webcam frames in a 3D scene
 
+1. Create a new 3D Scene
+2. Rename `Spatial` to `Main3D`
+3. Save the scene as `Main3D.tscn`
+4. Go to `AssetLib` and search for `xr`
+5. Download and install `Godot XR Tools - AR and VR helper library`
+6. Go to `Project` -> `Project Settings` -> `Plugins` tab and enable the `Godot XR Tools` plugin.
+7. Save and go to `Project` -> `Reload Current Project`
+8. Add a `WorldEnvironment` to `Main3D`
+9. Add a `ARVROrigin` to `Main3D`
+10. Add a `ARVRCamera` to `ARVROrigin`
+11. In `FileSystem` got to `addons` -> `godot-xr-tools` -> `objects` -> `viewport_2d_in_3d.tscn`, drag and drop it onto `ARVRCamera`
+12. The above step creates a `Viewport2Din3D`.
+    - Set `Viewport Size` to `640x480` and `Transform` to `[0, 0, -1.63]`
+    - Drag and drop `Main2D.tscn` from `FileSystem` onto `Scene` for the `Viewport2Din3D`
+    - Select `Unshaded`
+14. In `FileSystem` got to `addons` -> `godot-xr-tools` -> `xr` -> `start_xr.gd`, drag and drop it onto `ARVROrigin`
+15. Save the scene and run to view the output in the 3D scene.
+
+For more details watch the following video.   
 [![Showing the webcam frames in a 3D scene](https://img.youtube.com/vi/_CPhs4S6hZM/0.jpg)](https://www.youtube.com/watch?v=_CPhs4S6hZM)
 
 
 ## Displaying the OpenCV output in HMD
+
+1. Go to `AssetLib` and search for `xr`
+2. Download and install `OpenXR Plugin`
+3. Go to `Project` -> `Project Settings` -> `Plugins` tab and enable the `Godot OpenXR` plugin.
+4. Save and go to `Project` -> `Reload Current Project`
+5. Start your XR runtime:
+   - If you have a XR runtime like [Monado](https://monado.freedesktop.org/) start with in a new terminal with `monado-service`
+   - If you have SteamVR, start it so that your HMD is available
+6. Now run the project. The output should be visible to you in your HMD.    
+   (In my case, I did not have a HMD attached, so the output was shown on screen in a Dummy HMD)
+
+For more details watch the following video.  
 [![Displaying the OpenCV output in HMD](https://img.youtube.com/vi/34rrUbCTPwg/0.jpg)](https://www.youtube.com/watch?v=34rrUbCTPwg)
 

@@ -3,23 +3,23 @@ Godot example with C++ and OpenCV functions in GDNative.
 Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html](https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html)
 
 ## How was this repository created?
-1. Downloading the GDNative C++ Example [Watch Video](https://www.youtube.com/watch?v=J4fD2DpdZFY)
-2. Downloading Godot 3.5.2 [Watch Video](https://www.youtube.com/watch?v=uGxEqEZcE34)
-3. Making an empty project [Watch Video](https://www.youtube.com/watch?v=O7mk8gXt0SQ)
-4. Writing our own OpenCV code [Watch Video](https://www.youtube.com/watch?v=fTQO1rdPL2A)
-5. Creating the GDNative wrapper [Watch Video](https://www.youtube.com/watch?v=xmIunfSEQps)
-6. Compiling our code + wrapper with SConstruct [Watch Video](https://www.youtube.com/watch?v=pSwlfsST6oc)
-7. Creating files necessary for using our code in Godot [Watch Video](https://www.youtube.com/watch?v=cGgGFl-IFkk)
-8. Using our code to access webcam in a 2D scene [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
+1. Downloading the GDNative C++ Example | [Watch Video](https://www.youtube.com/watch?v=J4fD2DpdZFY)
+2. Downloading Godot 3.5.2 | [Watch Video](https://www.youtube.com/watch?v=uGxEqEZcE34)
+3. Making an empty project | [Watch Video](https://www.youtube.com/watch?v=O7mk8gXt0SQ)
+4. Writing our own OpenCV code | [Watch Video](https://www.youtube.com/watch?v=fTQO1rdPL2A)
+5. Creating the GDNative wrapper | [Watch Video](https://www.youtube.com/watch?v=xmIunfSEQps)
+6. Compiling our code + wrapper with SConstruct | [Watch Video](https://www.youtube.com/watch?v=pSwlfsST6oc)
+7. Creating files necessary for using our code in Godot | [Watch Video](https://www.youtube.com/watch?v=cGgGFl-IFkk)
+8. Using our code to access webcam in a 2D scene | [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
 
 
 ## How to use this repository?
 1. [Clone](#clone-recursive)
 2. [Compile godot-cpp](#compile-godot-cpp)
 3. [Compile our OpenCV code with Godot wrapper](#compile-our-opencv-code-with-godot-wrapper)
-4. [Using our code to access webcam in a 2D scene](#using-our-code-to-access-webcam-in-a-2d-scene) [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
-5. [Showing the webcam frames in a 3D scene](#showing-the-webcam-frames-in-a-3d-scene) [Watch Video](https://www.youtube.com/watch?v=_CPhs4S6hZM)
-6. [Displaying the OpenCV output in HMD](#displaying-the-opencv-output-in-hmd) [Watch Video](https://www.youtube.com/watch?v=34rrUbCTPwg)
+4. [Using our code to access webcam in a 2D scene](#using-our-code-to-access-webcam-in-a-2d-scene) | [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
+5. [Showing the webcam frames in a 3D scene](#showing-the-webcam-frames-in-a-3d-scene) | [Watch Video](https://www.youtube.com/watch?v=_CPhs4S6hZM)
+6. [Displaying the OpenCV output in HMD](#displaying-the-opencv-output-in-hmd) | [Watch Video](https://www.youtube.com/watch?v=34rrUbCTPwg)
 
 ## Clone Recursive
 ```bash

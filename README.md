@@ -1,16 +1,12 @@
-# Using OpenCV C++ code with Godot 3.5.2
+# Using OpenCV C++ code with Godot 3.5.2 on Ubuntu 20.04
 Godot example with C++ and OpenCV functions in GDNative.   
-Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html](https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html)
 
-## How was this repository created?
-1. Downloading the GDNative C++ Example | [Watch Video](https://www.youtube.com/watch?v=J4fD2DpdZFY)
-2. Downloading Godot 3.5.2 | [Watch Video](https://www.youtube.com/watch?v=uGxEqEZcE34)
-3. Making an empty project | [Watch Video](https://www.youtube.com/watch?v=O7mk8gXt0SQ)
-4. Writing our own OpenCV code | [Watch Video](https://www.youtube.com/watch?v=fTQO1rdPL2A)
-5. Creating the GDNative wrapper | [Watch Video](https://www.youtube.com/watch?v=xmIunfSEQps)
-6. Compiling our code + wrapper with SConstruct | [Watch Video](https://www.youtube.com/watch?v=pSwlfsST6oc)
-7. Creating files necessary for using our code in Godot | [Watch Video](https://www.youtube.com/watch?v=cGgGFl-IFkk)
-8. Using our code to access webcam in a 2D scene | [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
+Purpose:   
+- [x] Acquire video with a webcam
+- [x] Process frames with OpenCV
+- [x] Display output in AR/VR headset
+
+Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html](https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html)
 
 
 ## How to use this repository?
@@ -28,7 +24,10 @@ cd godot-cpp-opencv
 git submodule update --init --recursive
 ```
 
-### Structure that we now have
+P.S.: If you are downloading the .zip file, ensure that the `godot-cpp` folder if populated. See the structure below to be sure.
+<details>
+  <summary>Structure that we now have (click to expand)</summary>
+	
     godot-cpp-opencv                  # the repository
     ├── godot-cpp                     #
     │   ├── godot-headers             #
@@ -48,13 +47,13 @@ git submodule update --init --recursive
     ├── README.md                     #
     ├── SConstruct                    #
     ├── src                           # C++ code folder
-    │   ├── gd_opencv.h               #
-    │   ├── gd_opencv.cpp             #
-    │   ├── gd_opencv_library.cpp     #
-    │   ├── own_opencv_processing.h   #
-    │   ├── own_opencv_processing.cpp #
+    │   ├── gd_opencv.h               # header for wrapper to use OpenCV in Godot
+    │   ├── gd_opencv.cpp             # wrapper to use OpenCV in Godot
+    │   ├── gd_opencv_library.cpp     # library for the wrapper
+    │   ├── own_opencv_processing.h   # our OpenCV header
+    │   ├── own_opencv_processing.cpp # out OpenCV code
     └── ...
-
+</details>
 
 ##  Compile godot-cpp
 ```bash
@@ -148,3 +147,16 @@ For more details watch the following video.
 For more details watch the following video.  
 [![Displaying the OpenCV output in HMD](https://img.youtube.com/vi/34rrUbCTPwg/0.jpg)](https://www.youtube.com/watch?v=34rrUbCTPwg)
 
+
+
+## How was this repository created?
+1. Downloading the GDNative C++ Example | [Watch Video](https://www.youtube.com/watch?v=J4fD2DpdZFY)
+2. Downloading Godot 3.5.2 | [Watch Video](https://www.youtube.com/watch?v=uGxEqEZcE34)
+3. Making an empty project | [Watch Video](https://www.youtube.com/watch?v=O7mk8gXt0SQ)
+4. Writing our own OpenCV code | [Watch Video](https://www.youtube.com/watch?v=fTQO1rdPL2A)
+5. Creating the GDNative wrapper | [Watch Video](https://www.youtube.com/watch?v=xmIunfSEQps)
+6. Compiling our code + wrapper with SConstruct | [Watch Video](https://www.youtube.com/watch?v=pSwlfsST6oc)
+7. Creating files necessary for using our code in Godot | [Watch Video](https://www.youtube.com/watch?v=cGgGFl-IFkk)
+8. Using our code to access webcam in a 2D scene | [Watch Video](https://www.youtube.com/watch?v=klEPolEk2aA)
+	
+P.S.: All above videos are without audio.

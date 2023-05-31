@@ -19,9 +19,9 @@ Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative
 
 ## Clone Recursive
 ```bash
-git clone --recursive git@github.com:mgpadalkar/godot-cpp-opencv.git
+git clone --recursive https://github.com/mgpadalkar/godot-cpp-opencv.git
 cd godot-cpp-opencv
-git submodule update --init --recursive
+# git submodule update --init --recursive
 ```
 
 P.S.: If you are downloading the .zip file, ensure that the `godot-cpp` folder if populated. See the structure below to be sure.

@@ -112,7 +112,7 @@ For more details, watch the following video.
 
 1. Create a new 3D Scene
 2. Rename `Spatial` to `Main3D`
-3. Save the scene as `Main3D.tscn`
+3. Save the scene as `Main3D.tscn` and set it as the main scene.
 4. Go to `AssetLib` and search for `xr`
 5. Download and install `Godot XR Tools - AR and VR helper library`
 6. Go to `Project` -> `Project Settings` -> `Plugins` tab and enable the `Godot XR Tools` plugin.
@@ -144,6 +144,25 @@ For more details watch the following video.
 6. Now run the project. The output should be visible to you in your HMD.    
    (In my case, I did not have a HMD attached, so the output was shown on screen in a Dummy HMD)
 
+<details>
+	<summary>How I installed Monado? (click to expand)</summary>
+	
+	# the following should be sufficient
+	sudo add-apt-repository ppa:monado-xr/monado
+	sudo apt-get update
+	sudo apt-get install libopenxr-loader1 libopenxr-dev libopenxr1-monado
+	sudo apt-get install xr-hardware libopenxr-utils openxr-layer-apidump monado-cli monado-gui
+	
+	# if you need to build from source, see https://monado.freedesktop.org/getting-started.html#monado-installation
+	sudo apt-get install build-essential cmake libgl1-mesa-dev libvulkan-dev libx11-xcb-dev libxcb-dri2-0-dev libxcb-glx0-dev libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-randr0-dev libxrandr-dev libxxf86vm-dev mesa-common-dev
+	
+	# to run cretain demos on https://gitlab.freedesktop.org/monado/demos, you may also need the following
+	sudo apt-get install libsdl2-dev
+	sudo apt-get install libglm-dev
+	sudo apt-get install glslang-tools
+
+</details>	
+	
 For more details watch the following video.  
 [![Displaying the OpenCV output in HMD](https://img.youtube.com/vi/34rrUbCTPwg/0.jpg)](https://www.youtube.com/watch?v=34rrUbCTPwg)
 

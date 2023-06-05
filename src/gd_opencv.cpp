@@ -10,7 +10,7 @@ void GDOpenCVExample::_register_methods()
     register_property<GDOpenCVExample, int>("camera_id", &GDOpenCVExample::set_camera_id, &GDOpenCVExample::get_camera_id, 0);
     register_property<GDOpenCVExample, bool>("show_processed", &GDOpenCVExample::set_show_processed, &GDOpenCVExample::get_show_processed, false);
     register_property<GDOpenCVExample, int>("width", &GDOpenCVExample::width, 640);
-    register_property<GDOpenCVExample, int>("width", &GDOpenCVExample::height, 480);
+    register_property<GDOpenCVExample, int>("height", &GDOpenCVExample::height, 480);
     register_signal<GDOpenCVExample>((char *)"frame_updated", "node", GODOT_VARIANT_TYPE_OBJECT, "image", GODOT_VARIANT_TYPE_OBJECT);
 }
 

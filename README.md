@@ -1,12 +1,12 @@
 # Using OpenCV C++ code with Godot 3.5.2 on Ubuntu 20.04
-Godot example with C++ and OpenCV functions in GDNative.   
+Godot's GDExtension example with C++ and OpenCV functions.   
 
 Purpose:   
 - [x] Acquire video with a webcam
 - [x] Process frames with OpenCV
 - [x] Display output in AR/VR headset
 
-Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html](https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative/gdnative_cpp_example.html)
+Referred from: [https://docs.godotengine.org/en/4.1/tutorials/scripting/gdextension/gdextension_cpp_example.html](https://docs.godotengine.org/en/4.1/tutorials/scripting/gdextension/gdextension_cpp_example.html)
 
 
 ## How to use this repository?
@@ -19,7 +19,7 @@ Referred from: [https://docs.godotengine.org/en/3.5/tutorials/scripting/gdnative
 
 ## Clone Recursive
 ```bash
-git clone --recursive https://github.com/mgpadalkar/godot-cpp-opencv.git
+git clone -b 4.1 --recursive https://github.com/mgpadalkar/godot-cpp-opencv.git
 cd godot-cpp-opencv
 # git submodule update --init --recursive
 ```

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhj22h4qgk136"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3csf7"]
+[ext_resource type="Texture2D" uid="uid://dkc77eswma0al" path="res://icon.svg" id="1_xibrd"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_3csf7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="GDExample" type="GDExample" parent="Sprite2D"]
+position = Vector2(3.40936, 18.5787)
+texture = ExtResource("1_xibrd")
+centered = false
+
+[connection signal="position_changed" from="Sprite2D/GDExample" to="." method="_on_gd_example_position_changed"]

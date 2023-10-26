@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c587vtbfwth3k"]
+
+[ext_resource type="Script" path="res://2d_in_3d.gd" id="1_b8rgl"]
+
+[sub_resource type="StandardMaterial3D" id="6"]
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvh5i"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7gemw"]
+sky_material = SubResource("ProceduralSkyMaterial_cvh5i")
+
+[sub_resource type="Environment" id="Environment_fvsgw"]
+background_mode = 1
+sky = SubResource("Sky_7gemw")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="2Din3D" type="Node3D"]
+script = ExtResource("1_b8rgl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.05)
+
+[node name="ViewportQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0, -1.333, 0, 1, 0, 0, 1, -2)
+top_level = true
+material_override = SubResource("6")
+mesh = SubResource("1")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+render_target_update_mode = 4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fvsgw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shadow_enabled = true
+shadow_bias = 0.03
+shadow_blur = 1.5
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 10.0
+sky_mode = 1

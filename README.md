@@ -1,4 +1,4 @@
-# Using OpenCV C++ code with Godot 3.5.2 on Ubuntu 20.04
+# Using OpenCV C++ code with Godot 4.1.2 on Ubuntu 20.04
 Godot's GDExtension example with C++ and OpenCV functions.   
 
 Purpose:   
@@ -28,38 +28,37 @@ P.S.: If you are downloading the .zip file, ensure that the `godot-cpp` folder i
 <details>
   <summary>Structure that we now have (click to expand)</summary>
 	
-    godot-cpp-opencv                  # the repository
-    ├── godot-cpp                     #
-    │   ├── godot-headers             #
-    │   │   ├── <lots of files>       #
-    │   ├── <lots of other files>     #
-    ├── demo                          # project folder
-    │   ├── bin                       #
-    │   │   ├── gd_opencv.gdnlib      #
-    │   │   ├── gd_opencv.gdns        #
-    │   ├── default_env.tres          #
-    │   ├── icon.png                  #
-    │   ├── Main2D.tscn               #
-    │   ├── Main2D.gd                 #
-    │   ├── project.godot             #
-    ├── misc                          #
-    │   ├── set_opencv4.sh            # my opencv install settings
-    ├── README.md                     #
-    ├── SConstruct                    #
-    ├── src                           # C++ code folder
-    │   ├── gd_opencv.h               # header for wrapper to use OpenCV in Godot
-    │   ├── gd_opencv.cpp             # wrapper to use OpenCV in Godot
-    │   ├── gd_opencv_library.cpp     # library for the wrapper
-    │   ├── own_opencv_processing.h   # our OpenCV header
-    │   ├── own_opencv_processing.cpp # out OpenCV code
+    godot-cpp-opencv                           # the repository
+    ├── godot-cpp                              #
+    │   ├── godot-headers                      #
+    │   │   ├── <lots of files>                #
+    │   ├── <lots of other files>              #
+    ├── demo                                   # project folder
+    │   ├── bin                                #
+    │   │   ├── gd_opencv_example.gdextension  #
+    │   ├── icon.png                           #
+    │   ├── Main2D.tscn                        #
+    │   ├── Main2D.gd                          #
+    │   ├── project.godot                      #
+    ├── misc                                   #
+    │   ├── set_opencv4.sh                     # my opencv install settings
+    ├── README.md                              #
+    ├── SConstruct                             #
+    ├── src                                    # C++ code folder
+    │   ├── gd_opencv.h                        # header for wrapper to use OpenCV in Godot
+    │   ├── gd_opencv.cpp                      # wrapper to use OpenCV in Godot
+    │   ├── register_types.cpp                 # library for the wrapper
+    │   ├── register_types.h                   # header for the wrapper
+    │   ├── own_opencv_processing.h            # our OpenCV header
+    │   ├── own_opencv_processing.cpp          # out OpenCV code
     └── ...
 </details>
 
 ##  Compile godot-cpp
 ```bash
 cd godot-cpp
-scons platform=linux generate_bindings=yes -j8 
-# It generates: godot-cpp/bin/libgodot-cpp.linux.debug.64.a
+scons target=template_debug platform=linux generate_bindings=yes 
+# It generates: godot-cpp/bin/libgodot-cpp.linux.template_debug.x86_64.a
 ```
 
 ## Compile our OpenCV code with Godot wrapper
@@ -76,10 +75,10 @@ scons platform=linux generate_bindings=yes -j8
 cd ..
 scons platform=linux
 
-# It generates: demo/bin/x11/libgdopencvexample.so
+# It generates: demo/bin/libgd_opencv_example.linux.template_debug.x86_64.so
 ```
 
-Now use Godot (I used v3.5.2) to use the generated library.   
+Now use Godot (I used v4.1.2) to use the generated library.   
 Note: If OpenCV is built from source, like in my case,
 start Godot from the terminal in which the OpenCV paths are
 already set so that the OpenCV shared libs are available to
@@ -87,22 +86,23 @@ Godot.
 
 
 ## Using our code to access webcam in a 2D scene
-I am using Godot 3.5.2 downloaded from https://github.com/godotengine/godot/releases/download/3.5.2-stable/Godot_v3.5.2-stable_x11.64.zip
+I am using Godot 4.1.2 downloaded from [https://github.com/godotengine/godot/releases/download/4.1.2-stable/Godot_v4.1.2-stable_linux.x86_64.zip](https://github.com/godotengine/godot/releases/download/4.1.2-stable/Godot_v4.1.2-stable_linux.x86_64.zip)
 
 The scene is already created using the following steps.  
 Simply run to view the webcam output in Godot.   
 
-1. Add a `TextureRect` to `Main2D` and rename it to `webcamView`
-2. Add a `Sprite` to `Main2D`
-3. Attach the `bin\gd_opencv.gdns` script to `Sprite`
-4. Create a `Main2D.gd` script and attach it to `Main2D`
-5. Connect `frame_updated` signal of `Sprite` to `Main2D`
-6. Modify the `Main2D.gd` scripts' `func _on_Sprite_frame_updated(node image)` function with the following lines:
+1. Create a new scene by adding `Other Node` -> `CanvasLayer` and rename it to `Main2D`
+2. Add a `TextureRect` to `Main2D` and rename it to `webcamView`
+3. Add a `Sprite2D` to `Main2D`
+4. Add a `GDOpenCVExample` to `Sprite2D`
+5. Create a `Main2D.gd` script and attach it to `Main2D`
+6. Connect `frame_updated` signal of `GDOpenCVExample` to `Main2D`
+7. Modify the `Main2D.gd` scripts' `func _on_gd_open_cv_example_frame_updated(node, image)` function with the following lines:
 ```gdscript
-func _on_Sprite_frame_updated(node, image):
-	var image_texture:ImageTexture = ImageTexture.new()
-	image_texture.create_from_image(image)
-	$webcamView.texture = image_texture
+func _on_gd_open_cv_example_frame_updated(node, image):
+        var image_texture:ImageTexture = ImageTexture.new()
+	image_texture.set_image(image)
+	$webcamView.set_texture(image_texture)
 ```
 
 For more details, watch the following video.   

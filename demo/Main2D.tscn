@@ -1,19 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://maor82b3iqs6"]
 
-[ext_resource path="res://bin/gd_opencv.gdns" type="Script" id=1]
-[ext_resource path="res://Main2D.gd" type="Script" id=2]
+[ext_resource type="Script" path="res://Main2D.gd" id="1_m6r7n"]
 
-[node name="Main2D" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-script = ExtResource( 2 )
+[node name="Main2D" type="CanvasLayer"]
+script = ExtResource("1_m6r7n")
 
 [node name="webcamView" type="TextureRect" parent="."]
-margin_right = 640.0
-margin_bottom = 480.0
-expand = true
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Sprite" type="Sprite" parent="."]
-script = ExtResource( 1 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
-[connection signal="frame_updated" from="Sprite" to="." method="_on_Sprite_frame_updated"]
+[node name="GDOpenCVExample" type="GDOpenCVExample" parent="Sprite2D"]
+centered = false
+
+[connection signal="frame_updated" from="Sprite2D/GDOpenCVExample" to="." method="_on_gd_open_cv_example_frame_updated"]

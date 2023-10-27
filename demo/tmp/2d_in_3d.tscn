@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c587vtbfwth3k"]
+[gd_scene load_steps=8 format=3 uid="uid://c587vtbfwth3k"]
 
 [ext_resource type="Script" path="res://2d_in_3d.gd" id="1_b8rgl"]
+[ext_resource type="PackedScene" uid="uid://maor82b3iqs6" path="res://Main2D.tscn" id="2_v7l4f"]
 
 [sub_resource type="StandardMaterial3D" id="6"]
 metallic_specular = 0.0
@@ -15,13 +16,14 @@ ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 sky_material = SubResource("ProceduralSkyMaterial_cvh5i")
 
 [sub_resource type="Environment" id="Environment_fvsgw"]
-background_mode = 1
+background_mode = 2
 sky = SubResource("Sky_7gemw")
 tonemap_mode = 2
 glow_enabled = true
 
 [node name="2Din3D" type="Node3D"]
 script = ExtResource("1_b8rgl")
+scene = ExtResource("2_v7l4f")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.05)
@@ -33,13 +35,15 @@ material_override = SubResource("6")
 mesh = SubResource("1")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+use_xr = true
+transparent_bg = true
+size = Vector2i(0, 0)
 render_target_update_mode = 4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fvsgw")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shadow_enabled = true
 shadow_bias = 0.03
 shadow_blur = 1.5

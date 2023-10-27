@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1h0qblcwfd1a"]
+
+[ext_resource type="Script" path="res://Main3D.gd" id="1_7csk3"]
+[ext_resource type="PackedScene" uid="uid://maor82b3iqs6" path="res://Main2D.tscn" id="1_hap5n"]
+[ext_resource type="Texture2D" uid="uid://dx1retmlmj3f7" path="res://icon.svg" id="1_yrnlk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jc8o4"]
+
+[sub_resource type="Sky" id="Sky_gag56"]
+sky_material = SubResource("ProceduralSkyMaterial_jc8o4")
+
+[sub_resource type="Environment" id="Environment_lk4yt"]
+background_mode = 2
+sky = SubResource("Sky_gag56")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxqu5"]
+albedo_texture = ExtResource("1_yrnlk")
+metallic_specular = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oysh0"]
+size = Vector2(3, 2)
+
+[node name="Main3D" type="Node3D"]
+script = ExtResource("1_7csk3")
+scene = ExtResource("1_hap5n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lk4yt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -1.5)
+material_override = SubResource("StandardMaterial3D_lxqu5")
+mesh = SubResource("PlaneMesh_oysh0")
+skeleton = NodePath("")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+use_xr = true
+handle_input_locally = false
+size = Vector2i(0, 0)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]

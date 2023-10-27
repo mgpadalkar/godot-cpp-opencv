@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3npjx2g63myq"]
+
+[ext_resource type="Script" path="res://MainVR.gd" id="1_22l3y"]
+[ext_resource type="PackedScene" uid="uid://maor82b3iqs6" path="res://Main2D.tscn" id="2_wykme"]
+
+[node name="MainVR" type="Node3D"]
+script = ExtResource("1_22l3y")
+
+[node name="Main2D" parent="." instance=ExtResource("2_wykme")]

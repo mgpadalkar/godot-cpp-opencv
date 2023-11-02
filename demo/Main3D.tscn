@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dttselu1q6s34"]
+
+[ext_resource type="Script" path="res://Main3D.gd" id="1_mvurx"]
+[ext_resource type="PackedScene" uid="uid://2s6ic4uwabt8" path="res://Viewport2Din3D.tscn" id="2_2mgtj"]
+[ext_resource type="PackedScene" uid="uid://maor82b3iqs6" path="res://Main2D.tscn" id="3_vb7dh"]
+
+[sub_resource type="Environment" id="Environment_gtpqd"]
+background_mode = 1
+
+[node name="Main3D" type="Node3D"]
+script = ExtResource("1_mvurx")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="Viewport2Din3D" parent="XROrigin3D/XRCamera3D" instance=ExtResource("2_2mgtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.75)
+scene = ExtResource("3_vb7dh")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gtpqd")

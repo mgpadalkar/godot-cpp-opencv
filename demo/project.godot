@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GDExtension OpenCV Demos"
-run/main_scene="res://MainVR.tscn"
+run/main_scene="res://Main3D.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 

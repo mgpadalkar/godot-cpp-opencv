@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://2s6ic4uwabt8"]
+
+[ext_resource type="Script" path="res://Viewport2Din3D.gd" id="1_1lduh"]
+[ext_resource type="Shader" path="res://scene.gdshader" id="1_ndquv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6l38"]
+render_priority = 0
+shader = ExtResource("1_ndquv")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8h1rc"]
+material = SubResource("ShaderMaterial_t6l38")
+size = Vector2(1.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aqngx"]
+resource_local_to_scene = true
+size = Vector3(1.5, 1, 0.01)
+
+[node name="Viewport2Din3D" type="Node3D"]
+script = ExtResource("1_1lduh")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_8h1rc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_aqngx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

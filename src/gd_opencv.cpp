@@ -21,7 +21,7 @@ void GDOpenCVExample::_bind_methods()
     ClassDB::bind_method(D_METHOD("set_show_processed", "do_process"), &GDOpenCVExample::set_show_processed);
     ClassDB::add_property("GDOpenCVExample", PropertyInfo(Variant::BOOL, "show_processed"), "set_show_processed", "get_show_processed");
     
-    ADD_SIGNAL(MethodInfo("frame_updated", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::OBJECT, "image")));
+    ADD_SIGNAL(MethodInfo("frame_updated", PropertyInfo(Variant::OBJECT, "node"), PropertyInfo(Variant::OBJECT, "image_array")));
 
 }
 
@@ -68,8 +68,11 @@ void GDOpenCVExample::_process(double delta)
         if (cap->read(frame))
         {
             cv::Mat output = own_opencv_code_object->process_image(frame, show_processed);
-            Ref<Image> gd_frame = cvMat_to_Image(output); // convert to Godot Image
-            emit_signal("frame_updated", this, gd_frame);
+            // Ref<Image> gd_frame = cvMat_to_Image(output); // convert to Godot Image
+            // emit_signal("frame_updated", this, gd_frame);
+            std::vector<cv::Mat> output_array = {output};
+            Array gd_array = cvMat_to_Image(output_array);
+            emit_signal("frame_updated", this, gd_array);
         }
     }
 }
@@ -179,4 +182,15 @@ Ref<Image> GDOpenCVExample::cvMat_to_Image(cv::Mat input)
 
     // return
     return img;
+}
+
+
+Array GDOpenCVExample::cvMat_to_Image(std::vector<cv::Mat> input)
+{
+    Array frame_array{};
+    for(size_t i=0; i<input.size(); i++)
+    {
+        frame_array.push_back(cvMat_to_Image(input[i]));
+    }
+    return frame_array;
 }

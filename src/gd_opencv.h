@@ -49,6 +49,7 @@ namespace godot
 
             // to convert from cv::Mat to godot::Ref<godot::Image>
             Ref<Image> cvMat_to_Image(cv::Mat input);
+            Array cvMat_to_Image(std::vector<cv::Mat> input);
     };
 
 }
